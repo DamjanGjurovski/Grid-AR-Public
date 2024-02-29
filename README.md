@@ -1,4 +1,3 @@
-
 # Grid-AR
 
 ### Data
@@ -15,10 +14,10 @@ conda env create -f environment.yml
 conda activate grid-ar
 # Run commands below inside this directory.
 ```
-
+The torch version needs to be changed depending on the cuda version.
 
 ## Project Setup for Grid-AR 
-First, create a `.py` file from `data_location_variables.template`. Then put the location to the folder storing the table csv file in `data_location_variables.py` in the variable `data_location`.
+First, create a `.py` file from `data_location_variables.template` and `PathsVariables.template`. Then put the location to the folder storing the table csv file in `data_location_variables.py` in the variable `data_location`.
 
 Create the following folders:
 
@@ -32,7 +31,7 @@ To load a pre-processed dataset and an existing Grid-AR estimator, set `read_par
 When creating a new Grid-AR estimator, set the name for the estimator by changing `grid_ar_name = ''`. 
 
 
-Everything is set up for training a new CDF-based Grid-AR
+Everything is set up for training a new CDF-based Grid-AR. 
 To load an existing model, change `load_existing_grid=True` and `grid_ar_name` in `data_location_variables.py` and the number of ranges per column.
 Also, the Grid-AR structure with the AR model and all required info will be stored for consecutive invocations.
 For different buckets per column, a different Grid-AR structure with AR model needs to be created. 
@@ -45,12 +44,12 @@ To change the number of **epochs** for which the model is trained you can do tha
 By default, the model will use compression.
 
 ## Experiments
-To measure the memory consumption of the grid structure, remove the estimator beofre saving. 
+To measure the memory consumption of the grid structure, remove the estimator before saving. 
 The memory consumption of the AR model is part of the name of the saved model.
 
-To repeat the experiments for single table queries, run `eval_single_table.py` as is.
+To repeat the experiments for single table queries and get the results for Figure 4, Table 2, Table 3, and Table 4, run `eval_single_table.py` as is.
 
-To repeat the experiments for range join queries, run `eval_range_joins.py` as is.
-   - To perform the experiments per query selectivity uncomment lines 242-245.
+To repeat the experiments for range join queries and get the results for Figure 6 and Table 6, run `eval_range_joins.py` as is.
+   - To perform the experiments per query selectivity uncomment lines 248-251.
    - To perform the experiments per query type, change the input files for min, max, query predicates and range joins.
    - To change the estimation type, change `type` in `overlap_calculation` of `range_filter.py`.
